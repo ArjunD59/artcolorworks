@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Artcolorworks</title>
+  <link rel="stylesheet" href="assets/styles/style.css">
+</head>
+<body>
+  <header>
+    <img src="assets/images/art.png" alt="Artcolorworks Logo" class="logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="workshops.html">Workshops</a>
+      <a href="shop.html">Shop</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Meet Anandi Ramanathan</h2>
+      <p>Blending watercolor dreams with mindfulness and joy.</p>
+    </section>
+
+    <section>
+      <div style="display: flex; align-items: flex-start; gap: 20px;">
+        <img src="assets/images/artist.jpg" alt="Anandi Ramanathan painting" style="width: 300px; border-radius: 10px;">
+        
+        <div style="max-width: 800px;">
+          <p>
+            <strong>Anandi Ramanathan</strong> is a watercolor and acrylic artist inspired by nature and her travels. She loves to observe, admire, and capture the beauty of the world through her art. Specializing in florals and illustrations, her paintings reflect a sense of joy and bliss that she hopes to share with others.
+          </p>
+          <p>
+            With over four years of experience, Anandi also conducts workshops to share her journey with watercolors and the knowledge she has gained along the way.
+          </p>
+          <p>
+            Her work has been exhibited and sold at various venues, including Princeton University, MarketFair Mall, West Windsor Arts Center, Plainsboro Library, the Breast Cancer Research Center’s Pink Show, Fox Chase Cancer Center, and Small World Coffee.
+          </p>
+          <p>
+            Her artwork is available for purchase at the artist co-op <strong>Princeton Makes</strong>, located in the Princeton Shopping Center, where she also maintains her studio. Additionally, her art is sold as greeting cards, stickers, and prints in over ten stores across New Jersey.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Artcolorworks</p>
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle("visible", entry.isIntersecting);
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(section => {
+      section.classList.add("hidden");
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>

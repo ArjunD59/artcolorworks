@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Artcolorworks</title>
+  <link rel="stylesheet" href="assets/styles/style.css">
+</head>
+<body>
+  <header>
+    <img src="assets/images/art.png" alt="Artcolorworks Logo" class="logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="workshops.html">Workshops</a>
+      <a href="shop.html">Shop</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Contact Us</h2>
+      <p>We'd love to hear from you!</p>
+    </section>
+
+    <section>
+      <p>For inquiries, workshop registrations, or custom art requests, feel free to reach out:</p>
+      <ul>
+        <li>Email: <a href="mailto:artcolorworks@gmail.com">artcolorworks@gmail.com</a></li>
+      </ul>
+     
+      <p>Alternatively, use the form below to send a message — whether you’re saying hello, asking about workshops, or just sharing kind words.</p>
+      <form style="max-width: 600px; margin: auto;">
+        <label>Name:<br><input type="text" name="name" required></label><br><br>
+        <label>Email:<br><input type="email" name="email" required></label><br><br>
+        <label>Message:<br><textarea name="message" rows="5" required></textarea></label><br><br>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Artcolorworks</p>
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle("visible", entry.isIntersecting);
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(section => {
+      section.classList.add("hidden");
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
