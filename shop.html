@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shop | Artcolorworks</title>
+  <title>Products | Artcolorworks</title>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles/style.css" />
+  <style>
+    .tab-content {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
+
 <body>
   <header>
     <img src="assets/images/art.png" alt="Artcolorworks Logo" class="logo">
@@ -14,19 +30,17 @@
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="workshops.html">Workshops</a>
-
       <div class="dropdown">
-        <a href="shop.html" class="dropbtn">Products</a>
+        <a class="dropbtn">Products</a>
         <div class="dropdown-content">
-          <a href="#personalized">Personalized Greetings</a>
-          <a href="#greeting-cards">Greeting Cards</a>
-          <a href="#stickers">Stickers</a>
-          <a href="#prints">Prints</a>
-          <a href="#bookmarks">Bookmarks</a>
-          <a href="#wholesale">Wholesale</a>
+          <a onclick="showTab('personalized')">Personalized Greetings</a>
+          <a onclick="showTab('greeting-cards')">Greeting Cards</a>
+          <a onclick="showTab('stickers')">Stickers</a>
+          <a onclick="showTab('prints')">Prints</a>
+          <a onclick="showTab('bookmarks')">Bookmarks</a>
+          <a onclick="showTab('wholesale')">Wholesale</a>
         </div>
       </div>
-
       <a href="gallery.html">Gallery</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -38,40 +52,48 @@
       <p>Explore original, hand-painted products that bring joy to every occasion.</p>
     </section>
 
-    <section id="personalized">
-      <h3>Personalized Greetings</h3>
-      <p>Customize watercolor cards with names, messages, or colors for a one-of-a-kind touch.</p>
-    </section>
+    <div id="product-tabs">
+      <section id="personalized" class="tab-content">
+        <h3>Personalized Greetings</h3>
+        <p>Customize watercolor cards with names, messages, or colors for a one-of-a-kind touch.</p>
+      </section>
 
-    <section id="greeting-cards">
-      <h3>Greeting Cards</h3>
-      <p>Original cards featuring floral designs, seasonal themes, and inspirational messages.</p>
-      <div class="grid">
-        <div class="item"><img src="assets/images/art1.jpg" alt="Greeting Card"><p>"Multicolor Flowers"</p></div>
-        <div class="item"><img src="assets/images/art2.jpg" alt="Greeting Card"><p>"Pink Vase with Daffodils"</p></div>
-      </div>
-    </section>
+      <section id="greeting-cards" class="tab-content">
+        <h3>Greeting Cards</h3>
+        <p>Original cards featuring floral designs, seasonal themes, and inspirational messages.</p>
+        <div class="grid">
+          <div class="item"><img src="assets/images/art1.jpg" alt="Greeting Card">
+            <p>"Multicolor Flowers"</p>
+          </div>
+          <div class="item"><img src="assets/images/art2.jpg" alt="Greeting Card">
+            <p>"Pink Vase with Daffodils"</p>
+          </div>
+        </div>
+      </section>
 
-    <section id="stickers">
-      <h3>Stickers</h3>
-      <p>Durable vinyl stickers of botanical art, perfect for laptops, journals, and gifts.</p>
-    </section>
+      <section id="stickers" class="tab-content">
+        <h3>Stickers</h3>
+        <p>Durable vinyl stickers of botanical art, perfect for laptops, journals, and gifts.</p>
+      </section>
 
-    <section id="prints">
-      <h3>Prints</h3>
-      <p>High-quality prints of Anandi's most loved paintings. Bring calm and beauty into your space.</p>
-    </section>
+      <section id="prints" class="tab-content">
+        <h3>Prints</h3>
+        <p>High-quality prints of Anandi's most loved paintings. Bring calm and beauty into your space.</p>
+      </section>
 
-    <section id="bookmarks">
-      <h3>Bookmarks</h3>
-      <p>Delicately painted bookmarks for readers and gift-givers alike.</p>
-    </section>
+      <section id="bookmarks" class="tab-content">
+        <h3>Bookmarks</h3>
+        <p>Delicately painted bookmarks for readers and gift-givers alike.</p>
+      </section>
 
-    <section id="wholesale">
-      <h3>Wholesale</h3>
-      <p>Interested in carrying Artcolorworks in your shop? We offer wholesale packages. <br>
-      Visit our <a href="https://www.faire.com/brand/b_asvvc665jh" target="_blank">Faire storefront</a> or <a href="contact.html">contact us</a> directly.</p>
-    </section>
+      <section id="wholesale" class="tab-content">
+        <h3>Wholesale</h3>
+        <p>Interested in carrying Artcolorworks in your shop? We offer wholesale packages.<br>
+          Visit our <a href="https://www.faire.com/brand/b_asvvc665jh" target="_blank">Faire storefront</a> or <a
+            href="contact.html">contact us</a> directly.
+        </p>
+      </section>
+    </div>
   </main>
 
   <footer>
@@ -79,16 +101,23 @@
   </footer>
 
   <script>
-    const sections = document.querySelectorAll("section");
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        entry.target.classList.toggle("visible", entry.isIntersecting);
+    function showTab(tabId) {
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => {
+        tab.classList.remove('active');
       });
-    }, { threshold: 0.1 });
-    sections.forEach(section => {
-      section.classList.add("hidden");
-      observer.observe(section);
-    });
+
+      const target = document.getElementById(tabId);
+      if (target) {
+        target.classList.add('active');
+      }
+    }
+
+    window.onload = function () {
+      showTab('personalized');
+    };
   </script>
+
 </body>
+
 </html>
